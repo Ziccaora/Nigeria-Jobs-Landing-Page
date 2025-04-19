@@ -1,12 +1,11 @@
-*
-{
+* {
     margin: 0;
     padding: 0;
     font-family: 'poppins', sans-serif;
     box-sizing: border-box;
 }
-.container
-{
+
+.container {
     width: 100vw;
     height: 100vh;
     background-image: url(images/background.png);
@@ -14,77 +13,162 @@
     background-size: cover;
     padding: 0 8%;
     position: relative;
+    overflow: hidden;
 }
-.logo
-{
-    width: 200px;
+
+/* Logo Styling (Zoom In and Out Continuously) */
+.logo {
+    width: clamp(140px, 25vw, 220px);
     padding: 20px 0;
     cursor: pointer;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    animation: zoomInOut 4s infinite ease-in-out;
+    position: relative; /* Ensure the circle positions relative to this */
+    z-index: 2; /* Keep logo above the spinning circle */
 }
-.content
-{
-    top: 50%;
+
+/* Keyframe Animation for Continuous Zoom */
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1); /* Zoom in */
+    }
+    100% {
+        transform: scale(1); /* Zoom out */
+    }
+}
+
+/* Spinning Circle Around the Logo */
+.logo::before {
+    content: "";
     position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%;  /* Circle size (larger than the logo) */
+    height: 250%; /* Circle size (larger than the logo) */
+    border: 3px solid #fff; /* Circle border */
+    border-radius: 50%; /* Make it a perfect circle */
+    transform: translate(-50%, -50%); /* Center the circle */
+    animation: spinAround 5s linear infinite, fadeOut 5s ease-in-out infinite;
+    z-index: -1; /* Place the circle behind the logo */
+}
+
+/* Circle Spin Animation */
+@keyframes spinAround {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Fade Out the Circle */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0; /* Make it disappear halfway */
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.content {
+    position: absolute;
+    top: 50%;
     transform: translateY(-50%);
     color: #fff;
+    max-width: 100%;
 }
-.content h1
-{
-    font-size: 64px;
+
+.content h1 {
+    font-size: clamp(24px, 6vw, 64px);
     font-weight: 600;
+    line-height: 1.2;
 }
-.content h1 span
-{
+
+.content h1 span {
     color: #ff3753;
 }
-.content button
-{
+
+.content button {
     background: transparent;
     border: 2px solid #fff;
     outline: none;
     padding: 12px 25px;
     color: #fff;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     margin-top: 30px;
     cursor: pointer;
+    font-size: clamp(12px, 3vw, 18px);
 }
-.content  button img
-{
-    width: 15px;
+
+.content button img {
+    width: clamp(12px, 4vw, 15px);
     margin-left: 10px;
 }
-.launch-time
-{
+
+.launch-time {
     display: flex;
+    gap: clamp(10px, 3vw, 20px);
+    margin-top: 30px;
+    flex-wrap: wrap;
 }
-.launch-time div
-{
-    flex-basis: 100px;
+
+.launch-time div {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
 }
-.launch-time div p
-{
-    font-size: 60px;
-    margin-bottom: -14px;
+
+.launch-time div p {
+    font-size: clamp(24px, 8vw, 60px);
+    margin-bottom: -10px;
 }
-.rocket
-{
-    width: 250px;
+
+.rocket {
+    width: clamp(120px, 20vw, 250px);
     position: absolute;
-    right: 10%;
+    right: clamp(5%, 10vw, 10%);
     bottom: 0;
-    animation: rocket 4s infinite;
+    animation: rocket 4s infinite ease-in-out;
 }
-@keyframes rocket
-{
-    0%
-    {
+
+@keyframes rocket {
+    0% {
         bottom: 0;
         opacity: 0;
+        transform: translateY(0);
     }
-    100%
-    {
-        bottom: 105%;
+    50% {
         opacity: 1;
+        transform: translateY(-20px);
+    }
+    100% {
+        bottom: 100%;
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+}
+
+/* Small screens fine-tune (optional) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 5%;
+    }
+
+    .launch-time {
+        justify-content: space-between;
+    }
+
+    .rocket {
+        right: 2%;
     }
 }
