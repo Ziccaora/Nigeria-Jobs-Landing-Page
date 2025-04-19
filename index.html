@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Launching Soon</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <img src="images/logo.svg" class="logo">
+
+            <div class="content">
+                <p>Website Is Under Maintenance</p>
+                <h1>We're  <span>Launching</span>  Soon</h1>
+                <div class="launch-time">
+                    <div>
+                        <p id="days">00</p>
+                        <span>Days</span>
+                    </div>
+                    <div>
+                        <p id="hours">00</p>
+                        <span>Hours</span>
+                    </div>
+                    <div>
+                        <p id="minutes">00</p>
+                        <span>Minutes</span>
+                    </div>
+                    <div>
+                        <p id="seconds">00</p>
+                        <span>Seconds</span>
+                    </div>
+                </div>
+                <button onclick="location.href='whitepaper.html'">
+                Learn More <img src="images/triangle.png"> </button>
+            </div>
+            <img src="images/rocket.png" class="rocket">
+        </div>
+        <script>
+            var countdownDate = new Date("June 1, 2025 00:00:00"). getTime();
+            var x = setInterval(function(){
+                var now = new Date().getTime();
+                var distance = countdownDate - now;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.querySelector(".launch-time").innerHTML = "Launched!";
+                } else {
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    document.querySelectorAll(".launch-time div")[0].querySelector("p").innerHTML = days;
+                    document.querySelectorAll(".launch-time div")[1].querySelector("p").innerHTML = hours;
+                    document.querySelectorAll(".launch-time div")[2].querySelector("p").innerHTML = minutes;
+                    document.querySelectorAll(".launch-time div")[3].querySelector("p").innerHTML = seconds;
+                }
+            },1000);
+        </script>
+    </body>
+</html>
