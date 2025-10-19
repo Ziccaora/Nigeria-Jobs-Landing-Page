@@ -1,40 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LocalRoute Whitepaper - Nigeria</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okija Chat Application - Secure Messaging Platform</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            background-color: #f4f7fa;
-            color: #333;
+            color: var(--dark);
+            background-color: var(--light);
         }
-
+        
         header {
-            background-color: #15803d;
-            color: #fff;
-            padding: 2rem 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 3rem 1rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         header h1 {
-            margin: 0;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
-
+        
         header p {
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
         }
-
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+        }
+        
         main {
+            max-width: 1000px;
+            margin: 0 auto;
             padding: 2rem;
-            max-width: 900px;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+        
+        h3 {
+            color: var(--dark);
+            margin: 1.5rem 0 0.5rem;
+        }
+        
+        ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background-color: #e0f2fe;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary);
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .security-section {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-button:hover {
+            background: #0ca678;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .whatsapp-section {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        .whatsapp-section a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            transition: background 0.3s ease;
+        }
+        
+        .whatsapp-section a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">💬 Okija</div>
+            <h1>Okija Chat Application</h1>
+            <p>Secure, private messaging with advanced group features and reporting capabilities</p>
+        </div>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>
+                Okija is a next-generation secure messaging platform designed with privacy and community at its core. 
+                We provide end-to-end encrypted communication, advanced group management tools, and comprehensive 
+                reporting features to ensure safe and productive conversations for individuals and organizations.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Our Mission</h2>
+            <p>To create the most secure and user-friendly messaging platform that empowers communities while protecting privacy and enabling effective communication.</p>
+        </section>
+        
+        <section>
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>End-to-End Encryption</h3>
+                    <p>All messages, calls, and shared media are encrypted so only you and the recipient can access them.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Advanced Group Management</h3>
+                    <p>Create groups with up to 1000 members, with customizable permissions and moderation tools.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Comprehensive Reporting</h3>
+                    <p>Advanced analytics and reporting tools for community managers and administrators.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Security Features</h3>
+                    <p>Self-destructing messages, two-factor authentication, and device management for enhanced security.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>File Sharing</h3>
+                    <p>Share documents, images, and videos up to 2GB with secure cloud storage integration.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Smart Search</h3>
+                    <p>Find messages, files, and contacts quickly with our powerful search functionality.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="security-section">
+            <h2>Security & Privacy</h2>
+            <p>At Okija, we take security and privacy seriously. Our platform is built with the following security measures:</p>
+            
+            <div class="highlight">
+                <h3>End-to-End Encryption</h3>
+                <p>All communications are encrypted using industry-standard protocols, ensuring that only the intended recipients can read your messages.</p>
+                
+                <h3>Privacy Controls</h3>
+                <p>Granular privacy settings allow you to control who can see your profile, status, and when you were last online.</p>
+                
+                <h3>Data Protection</h3>
+                <p>We adhere to strict data protection policies and never sell your data to third parties. Your information remains yours.</p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Group Features</h2>
+            <p>Okija offers powerful group management capabilities for communities, teams, and organizations:</p>
+            
+            <ul>
+                <li>Create groups with up to 1000 members</li>
+                <li>Assign multiple administrators with different permission levels</li>
+                <li>Set group rules and guidelines</li>
+                <li>Broadcast messages to all group members</li>
+                <li>Group analytics and engagement reports</li>
+                <li>File sharing with version control</li>
+                <li>Pinned messages and announcements</li>
+                <li>Custom group invites and join requests</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Reporting & Analytics</h2>
+            <p>Okija provides comprehensive reporting tools for community managers and administrators:</p>
+            
+            <div class="highlight">
+                <h3>Activity Reports</h3>
+                <p>Track user engagement, message volume, and peak activity times to understand community dynamics.</p>
+                
+                <h3>Security Reports</h3>
+                <p>Monitor security events, login attempts, and potential threats to your community.</p>
+                
+                <h3>Content Moderation</h3>
+                <p>Automated and manual content moderation tools to maintain community standards.</p>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <h2>Ready to Experience Secure Messaging?</h2>
+            <p>Join thousands of users who trust Okija for their private and group communications.</p>
+            <a href="#" class="cta-button">Download Okija Now</a>
+        </section>
+        
+        <section class="whatsapp-section">
+            <p>📢 <strong>Join our Okija Community</strong> for updates, feature announcements, and security tips!</p>
+            <p>
+                <a href="https://chat.whatsapp.com/Chy4YMh8TRvL6uywCh06qC" target="_blank">Join Our Community Group</a>
+            </p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Okija Chat Application | All rights reserved.</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">Secure. Private. Connected.</p>
+    </footer>
+</body>
+                        </html>            max-width: 900px;
             margin: auto;
         }
 
