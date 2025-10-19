@@ -50,7 +50,7 @@
             background: rgba(0, 0, 0, 0.3);
             border-radius: 20px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(3px);
             position: relative;
             overflow: hidden;
         }
@@ -192,15 +192,15 @@
         }
 
         .partners {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .partners p {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -208,35 +208,32 @@
         .partner-logos {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .partner-logo {
-            width: 120px;
-            height: 60px;
-            border-radius: 8px;
+            width: 140px;
+            height: 70px;
+            border-radius: 10px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .partner-logo img {
-            width: 100%;
-            height: 100%;
+            width: 90%;
+            height: 90%;
             object-fit: contain;
-            padding: 5px;
         }
 
         .partner-logo:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
+            background: rgba(255, 255, 255, 0.25);
         @media (max-width: 768px) {
             .container {
                 padding: 1.5rem;
@@ -250,21 +247,6 @@
                 font-size: 2rem;
             }
             
-            .launch-time {
-                gap: 1rem;
-            }
-            
-            .launch-time p {
-                font-size: 2.5rem;
-            }
-            
-            .launch-time div {
-                flex-basis: 70px;
-            }
-            
-            .rocket {
-                width: 150px;
-            }
             
             .partner-logo {
                 width: 100px;
