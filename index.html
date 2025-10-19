@@ -1,61 +1,308 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Launching Soon</title>
-        <link rel="stylesheet" href="style.css" type="text/css">
-    </head>
-    <body>
-        <div class="container">
-            <img src="images/logo.svg" class="logo">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okija - Launching Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-            <div class="content">
-                <p>Website Is Under Maintenance</p>
-                <h1>We're  <span>Launching</span>  Soon</h1>
-                <div class="launch-time">
-                    <div>
-                        <p id="days">00</p>
-                        <span>Days</span>
-                    </div>
-                    <div>
-                        <p id="hours">00</p>
-                        <span>Hours</span>
-                    </div>
-                    <div>
-                        <p id="minutes">00</p>
-                        <span>Minutes</span>
-                    </div>
-                    <div>
-                        <p id="seconds">00</p>
-                        <span>Seconds</span>
-                    </div>
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            letter-spacing: 2px;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .content h1 span {
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        .launch-time {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .launch-time div {
+            flex-basis: 100px;
+            text-align: center;
+        }
+
+        .launch-time p {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .launch-time span {
+            font-size: 1rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff8a00, #e52e71);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .rocket {
+            width: 200px;
+            margin-top: 2rem;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .content h1 {
+                font-size: 2rem;
+            }
+            
+            .launch-time {
+                gap: 1rem;
+            }
+            
+            .launch-time p {
+                font-size: 2.5rem;
+            }
+            
+            .launch-time div {
+                flex-basis: 70px;
+            }
+            
+            .rocket {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .launch-time {
+                flex-wrap: wrap;
+            }
+            
+            .launch-time div {
+                flex-basis: 60px;
+            }
+            
+            .launch-time p {
+                font-size: 2rem;
+            }
+            
+            .rocket {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <div class="logo">OKIJA</div>
+        <div class="logo-text">Secure Messaging Platform</div>
+
+        <div class="content">
+            <p>Website Is Under Maintenance</p>
+            <h1>We're <span>Launching</span> Soon</h1>
+            <div class="launch-time">
+                <div>
+                    <p id="days">00</p>
+                    <span>Days</span>
                 </div>
-                <button onclick="location.href='whitepaper.html'">
-                Learn More <img src="images/triangle.png"> </button>
+                <div>
+                    <p id="hours">00</p>
+                    <span>Hours</span>
+                </div>
+                <div>
+                    <p id="minutes">00</p>
+                    <span>Minutes</span>
+                </div>
+                <div>
+                    <p id="seconds">00</p>
+                    <span>Seconds</span>
+                </div>
             </div>
-            <img src="images/rocket.png" class="rocket">
+            <button onclick="location.href='whitepaper.html'">
+                Learn More <span>→</span>
+            </button>
         </div>
-        <script>
-            var countdownDate = new Date("June 1, 2025 00:00:00"). getTime();
-            var x = setInterval(function(){
-                var now = new Date().getTime();
-                var distance = countdownDate - now;
+        
+        <!-- Rocket image replaced with SVG data URI -->
+        <svg class="rocket" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#ff8a00" d="M477.64 38.26a16.94 16.94 0 0 0-13.75-13.73c-66.38-5.81-131.78 11.12-189.9 40.47a334.54 334.54 0 0 0-41.21 26.65 8 8 0 0 0-1.35 1.22l-26.58 40.91-66.12-12.16a8 8 0 0 0-8 2.12L32 192a8 8 0 0 0 0 11.32l45.25 45.26a8 8 0 0 0 11.32 0l36.8-36.8 12.16 66.12a8 8 0 0 0 1.22 1.35l40.91 26.58a8 8 0 0 0 1.22 1.35 334.54 334.54 0 0 0 26.65 41.21c29.35 58.12 46.28 123.52 40.47 189.9a16.94 16.94 0 0 0 13.73 13.75c16.4 1.43 69.56-5.93 134.68-48.63a16.94 16.94 0 0 0 5.07-8.37c7.83-38.39-1.65-122.9-34.92-202.72a16.94 16.94 0 0 0-7.18-8.37c-44.34-26.13-89.87-44.34-134.68-54.8a16.94 16.94 0 0 0-8.37-5.07c-38.39-7.83-122.9 1.65-202.72 34.92a16.94 16.94 0 0 0-8.37 7.18c-26.13 44.34-44.34 89.87-54.8 134.68a16.94 16.94 0 0 0-5.07 8.37c-7.83 38.39 1.65 122.9 34.92 202.72a16.94 16.94 0 0 0 7.18 8.37c44.34 26.13 89.87 44.34 134.68 54.8a16.94 16.94 0 0 0 8.37 5.07c38.39 7.83 122.9-1.65 202.72-34.92a16.94 16.94 0 0 0 8.37-7.18c42.7-65.12 50.06-118.28 48.63-134.68z"/>
+            <path fill="#e52e71" d="M160 152a24 24 0 1 0 24-24 24 24 0 0 0-24 24zm128 128a24 24 0 1 0 24-24 24 24 0 0 0-24 24zm-64 64a24 24 0 1 0 24-24 24 24 0 0 0-24 24z"/>
+        </svg>
+    </div>
 
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.querySelector(".launch-time").innerHTML = "Launched!";
-                } else {
-                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 5 + 's';
+            starsContainer.appendChild(star);
+        }
 
-                    document.querySelectorAll(".launch-time div")[0].querySelector("p").innerHTML = days;
-                    document.querySelectorAll(".launch-time div")[1].querySelector("p").innerHTML = hours;
-                    document.querySelectorAll(".launch-time div")[2].querySelector("p").innerHTML = minutes;
-                    document.querySelectorAll(".launch-time div")[3].querySelector("p").innerHTML = seconds;
-                }
-            },1000);
-        </script>
-    </body>
-</html>
+        // Countdown timer
+        var countdownDate = new Date("June 1, 2025 00:00:00").getTime();
+        var x = setInterval(function(){
+            var now = new Date().getTime();
+            var distance = countdownDate - now;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector(".launch-time").innerHTML = "<p>Launched!</p>";
+            } else {
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            }
+        }, 1000);
+    </script>
+</body>
+    </html>
