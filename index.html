@@ -18,13 +18,12 @@
             justify-content: center;
             align-items: center;
             color: white;
-            overflow: auto;
+            overflow: hidden;
             position: relative;
-            padding: 20px;
         }
 
         .video-background {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -34,27 +33,26 @@
         }
 
         .overlay {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
             z-index: -1;
         }
 
         .container {
             text-align: center;
-            max-width: 900px;
-            width: 95%;
-            padding: 2.5rem;
-            background: rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            width: 90%;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             position: relative;
-            overflow: visible;
-            margin: 20px 0;
+            overflow: hidden;
         }
 
         .container::before {
@@ -64,12 +62,12 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
             z-index: -1;
         }
 
         .logo {
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-weight: 800;
             margin-bottom: 1rem;
             background: linear-gradient(45deg, #ff8a00, #e52e71);
@@ -80,7 +78,7 @@
         }
 
         .logo-text {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
             opacity: 0.9;
             letter-spacing: 3px;
@@ -88,13 +86,13 @@
         }
 
         .content p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 1rem;
             opacity: 0.9;
         }
 
         .content h1 {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 2rem;
             font-weight: 700;
         }
@@ -114,12 +112,12 @@
         }
 
         .launch-time div {
-            flex-basis: 110px;
+            flex-basis: 100px;
             text-align: center;
         }
 
         .launch-time p {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             background: linear-gradient(45deg, #ff8a00, #e52e71);
@@ -129,19 +127,19 @@
         }
 
         .launch-time span {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.8;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         button {
-            padding: 1.2rem 2.5rem;
+            padding: 1rem 2rem;
             background: linear-gradient(45deg, #ff8a00, #e52e71);
             border: none;
             border-radius: 50px;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -158,8 +156,8 @@
         }
 
         .rocket {
-            width: 220px;
-            margin: 2rem 0;
+            width: 200px;
+            margin-top: 2rem;
             animation: float 3s ease-in-out infinite;
             filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
         }
@@ -171,7 +169,7 @@
         }
 
         .stars {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -194,15 +192,15 @@
         }
 
         .partners {
-            margin-top: 2.5rem;
+            margin-top: 2rem;
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .partners p {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -210,84 +208,36 @@
         .partner-logos {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .partner-logo {
-            width: 140px;
-            height: 70px;
-            border-radius: 10px;
+            width: 120px;
+            height: 60px;
+            border-radius: 8px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .partner-logo img {
-            width: 90%;
-            height: 90%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            padding: 5px;
         }
 
         .partner-logo:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            .container {
-                padding: 2rem;
-                width: 98%;
-            }
-            
-            .logo {
-                font-size: 3.5rem;
-            }
-            
-            .content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .launch-time {
-                gap: 1rem;
-            }
-            
-            .launch-time p {
-                font-size: 2.8rem;
-            }
-            
-            .launch-time div {
-                flex-basis: 80px;
-            }
-            
-            .rocket {
-                width: 180px;
-            }
-            
-            .partner-logo {
-                width: 120px;
-                height: 60px;
-            }
-            
-            .partner-logos {
-                gap: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
             .container {
                 padding: 1.5rem;
             }
@@ -297,28 +247,23 @@
             }
             
             .content h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .launch-time {
-                flex-wrap: wrap;
-                gap: 0.8rem;
+                gap: 1rem;
+            }
+            
+            .launch-time p {
+                font-size: 2.5rem;
             }
             
             .launch-time div {
                 flex-basis: 70px;
             }
             
-            .launch-time p {
-                font-size: 2.2rem;
-            }
-            
             .rocket {
-                width: 140px;
-            }
-            
-            .partner-logos {
-                gap: 1rem;
+                width: 150px;
             }
             
             .partner-logo {
@@ -326,19 +271,14 @@
                 height: 50px;
             }
             
-            button {
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
+            .partner-logos {
+                gap: 1rem;
             }
         }
 
-        @media (max-width: 360px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .content h1 {
-                font-size: 1.6rem;
+        @media (max-width: 480px) {
+            .launch-time {
+                flex-wrap: wrap;
             }
             
             .launch-time div {
@@ -346,12 +286,20 @@
             }
             
             .launch-time p {
-                font-size: 1.8rem;
+                font-size: 2rem;
+            }
+            
+            .rocket {
+                width: 120px;
+            }
+            
+            .partner-logos {
+                gap: 0.8rem;
             }
             
             .partner-logo {
-                width: 85px;
-                height: 45px;
+                width: 80px;
+                height: 40px;
             }
         }
     </style>
@@ -373,24 +321,6 @@
         <div class="content">
             <p>Website Is Under Maintenance</p>
             <h1>We're <span>Launching</span> Soon</h1>
-            <div class="launch-time">
-                <div>
-                    <p id="days">00</p>
-                    <span>Days</span>
-                </div>
-                <div>
-                    <p id="hours">00</p>
-                    <span>Hours</span>
-                </div>
-                <div>
-                    <p id="minutes">00</p>
-                    <span>Minutes</span>
-                </div>
-                <div>
-                    <p id="seconds">00</p>
-                    <span>Seconds</span>
-                </div>
-            </div>
             <!-- Partners Section -->
         <div class="partners">
             <p>Partnering With</p>
@@ -413,6 +343,9 @@
                 Learn More <span>→</span>
             </button>
         </div>
+        
+        
+        
         
     </div>
 
@@ -454,4 +387,4 @@
         }, 1000);
     </script>
 </body>
-                        </html>
+                    </html>
